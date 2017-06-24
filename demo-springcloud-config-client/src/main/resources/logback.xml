@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration debug="false" scan="true" scanPeriod="1 seconds">
+
+    <property name="APP_NAME" value="demo-springcloud" />
+    <property name="LOG_FORMAT" value="[%-5p][%d]\: - [%t][%c{2}.%M:%L] - %m%n" />
+    <property name="CATALINA_BASE" value="/logs/demo/springcloud/config/client" />
+
+    <contextName>${APP_NAME}</contextName>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${LOG_FORMAT}</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="APP" class="ch.qos.logback.core.rolling.RollingFileAppender">
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>${CATALINA_BASE}/app.%d{yyyy-MM-dd}.log</FileNamePattern>
+        </rollingPolicy>
+
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>${LOG_FORMAT}</pattern>
+        </layout>
+    </appender>
+
+    <logger name="org.springframework" level="error" additivity="false">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="APP" />
+    </logger>
+
+    <root level="info">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="APP" />
+    </root>
+</configuration>
