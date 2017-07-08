@@ -18,6 +18,8 @@
     <modules>
         <module>demo-springcloud-config-server</module>
         <module>demo-springcloud-config-client</module>
+        <module>demo-springcloud-netflix-eureka-server</module>
+        <module>demo-springcloud-netflix-eureka-client</module>
     </modules>
 
     <dependencyManagement>
@@ -42,6 +44,18 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-config-client</artifactId>
+                <version>${spring.cloud.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-eureka-server</artifactId>
+                <version>${spring.cloud.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-eureka</artifactId>
                 <version>${spring.cloud.version}</version>
             </dependency>
         </dependencies>
