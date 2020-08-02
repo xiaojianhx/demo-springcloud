@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration debug="true" scan="true" scanPeriod="1 seconds">
+
+    <property name="APP_NAME" value="demo-springcloud-netflix-eureka-server" />
+    <property name="LOG_FORMAT" value="[%-5p][%d] - [%-5t][%c{2}#%M:%L] - %m%n" />
+    <property name="CATALINA_BASE" value="/usr/local/logs/${APP_NAME}" />
+
+    <contextName>${APP_NAME}</contextName>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${LOG_FORMAT}</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="APP" class="ch.qos.logback.core.rolling.RollingFileAppender">
+
+        <file>${CATALINA_BASE}.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>${CATALINA_BASE}.%d{yyyyMMdd}.log</FileNamePattern>
+        </rollingPolicy>
+
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>${LOG_FORMAT}</pattern>
+        </layout>
+    </appender>
+
+    <logger name="org.springframework" level="ERROR" />
+    <logger name="com.zaxxer.hikari" level="ERROR" />
+
+    <root level="INFO">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="APP" />
+    </root>
+</configuration>
